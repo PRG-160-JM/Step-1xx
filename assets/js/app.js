@@ -17,6 +17,7 @@ function init() {
 		}
 	});
 
+
 	$.ajax({
 		method: 'GET',
 		url: 'assets/data/menu.json',
@@ -25,17 +26,18 @@ function init() {
 
 			var menu = menuBuilder(data.menu);
 
-		},
+			$('nav').append(menu);
 
+		},
 		error: function () {
 
 			console.log('all is not good');
 
 		}
-
 	});
 
 }
+
 
 function menuBuilder(obj) {
 
@@ -68,5 +70,4 @@ function menuBuilder(obj) {
 	}
 
 	return theMenu;
-
 }
