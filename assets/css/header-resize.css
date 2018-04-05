@@ -215,8 +215,7 @@ header.smaller nav {
 	height: 35px;
 }
 header.smaller nav a {
-	/*line-height: 35px;*/
-	line-height: 32px;
+	line-height: 35px;
 }
 }
 
