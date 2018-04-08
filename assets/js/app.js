@@ -20,7 +20,7 @@ function init() {
 
 	$.ajax({
 		method: 'GET',
-		url: 'http: me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/2',
+		url: 'https://me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/2',
 		dataType: 'json',
 		success: function (data) {
 
