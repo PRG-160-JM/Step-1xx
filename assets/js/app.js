@@ -20,7 +20,7 @@ function init() {
 
 	$.ajax({
 		method: 'GET',
-		url: 'http: me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/2',
+		url: 'https://me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/2',
 		dataType: 'json',
 		success: function (data) {
 
@@ -28,7 +28,7 @@ function init() {
 			
 			var menu = menuBuilder(data.items);
 
-			$('nav').append(menu);
+			$('nav').html(menu).slideDown();
 			
 			$("#loaderDiv").fadeOut("slow");
 
@@ -55,7 +55,7 @@ function menuBuilder(obj) {
 
 			theMenu = theMenu + '<li><a href="#">' + item.title + '</a>';
 
-			if (item.children.length) {
+			if (item.children) {
 
 				theMenu = theMenu + menuBuilder(item.children);
 
