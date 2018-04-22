@@ -23,13 +23,9 @@ function init() {
 		url: 'https://me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/2',
 		dataType: 'json',
 		success: function (data) {
-
 			$("nav").hide();
-
 			var menu = menuBuilder(data.items);
-
 			$('nav').html(menu).slideDown();
-
 			$('nav li a').click(function () {
 				getPage($(this).data("pgid"));
 			});
@@ -46,20 +42,17 @@ function init() {
 	});
 
 
-$.ajax({
+	$.ajax({
 		method: 'GET',
-		url: 'https://me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/2',
+		url: 'https://me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/3',
 		dataType: 'json',
 		success: function (data) {
-
 			var menu = menuBuilder(data.items, 'genLinks', 'footer-url');
-
-			$('genLinks').replaceWith(menu); 
-			
+			$('genLinks').replaceWith(menu);
 			$('genLinks li a').click(function () {
 				getPage($(this).data("pgid"));
 			});
-			
+
 			getPage($(this).data("pgid"));
 
 		},
@@ -74,35 +67,21 @@ $.ajax({
 
 }
 
-
 function menuBuilder(obj) {
-
 	var theMenu = '';
-
 	if (obj.length > 0) {
-
 		theMenu = theMenu + '<ul>';
-
 		obj.forEach(function (item) {
-
 			theMenu = theMenu + '<li><a href="#" data-pgid="' + item.object_id + '">' + item.title + '</a>';
-
 			if (item.children) {
-
 				theMenu = theMenu + menuBuilder(item.children);
-
 			}
-
 			theMenu = theMenu + '</li>';
-
 		});
-
 		theMenu = theMenu + '</ul>';
 
 	} else {
-
 		console.log('no data');
-
 	}
 
 	return theMenu;
@@ -131,6 +110,27 @@ function getPage(obj) {
 		},
 		error: function () {
 			console.log('bad');
+		}
+	});
+}
+
+function getPosts() {
+
+	$.ajax({
+		method: 'GET',
+		url: 'http://me.iambeardednbroke.com/wp-json/wp/v2/posts?orderby=date&order=desc&per_page=5&offset=10',
+		datatype: 'json',
+		success: function (data) {
+			$("#latestPosts").html('<p id="postLdr"><i class="fa fa-cogs"></i>Loading Posts</p>');
+			data.forEach(function (item) {
+				var myDate = new Date(item.date);
+
+				$("#latestPosts").prepend('<p>' + item.title.rendered + '<span>' + myDate.getMonth() + '-' + myDate.getDay() + '-' + myDate.getfullYear() + '</span></p>');
+			});
+			$("postLdr").remove();
+		},
+		error: function () {
+			console.log('all is bad');
 		}
 	});
 }
