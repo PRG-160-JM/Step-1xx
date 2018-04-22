@@ -45,6 +45,33 @@ function init() {
 		}
 	});
 
+
+$.ajax({
+		method: 'GET',
+		url: 'https://me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/2',
+		dataType: 'json',
+		success: function (data) {
+
+			var menu = menuBuilder(data.items, 'genLinks', 'footer-url');
+
+			$('genLinks').replaceWith(menu); 
+			
+			$('genLinks li a').click(function () {
+				getPage($(this).data("pgid"));
+			});
+			
+			getPage($(this).data("pgid"));
+
+		},
+		error: function () {
+
+			console.log('all is not good');
+
+		}
+	});
+
+	getPosts();
+
 }
 
 
@@ -59,8 +86,6 @@ function menuBuilder(obj) {
 		obj.forEach(function (item) {
 
 			theMenu = theMenu + '<li><a href="#" data-pgid="' + item.object_id + '">' + item.title + '</a>';
-
-
 
 			if (item.children) {
 
