@@ -48,7 +48,7 @@ function init() {
 
 $.ajax({
 		method: 'GET',
-		url: 'https://me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/2',
+		url: 'https://me.iambeardednbroke.com/wp-json/wp-api-menus/v2/menus/3',
 		dataType: 'json',
 		success: function (data) {
 
@@ -74,14 +74,16 @@ $.ajax({
 
 }
 
-
 function menuBuilder(obj) {
 
 	var theMenu = '';
 
 	if (obj.length > 0) {
-
-		theMenu = theMenu + '<ul>';
+		
+		let target = (target)?' id="'+'"':'';
+		let elClass = (classInfo)?' id="'+'"':'';
+		
+		theMenu = theMenu + '<ul'+target+''+elClass+'>';
 
 		obj.forEach(function (item) {
 
