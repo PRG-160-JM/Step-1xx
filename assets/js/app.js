@@ -54,9 +54,9 @@ $.ajax({
 
 			var menu = menuBuilder(data.items, 'genLinks', 'footer-url');
 
-			$('genLinks').replaceWith(menu); 
+			$('#genLinks').replaceWith(menu); 
 			
-			$('genLinks li a').click(function () {
+			$('#genLinks li a').click(function () {
 				getPage($(this).data("pgid"));
 			});
 			
@@ -72,17 +72,17 @@ $.ajax({
 
 }
 
-function menuBuilder(obj) {
+function menuBuilder(obj, targetEl, classInfo) {
 
 	var theMenu = '';
 
 	if (obj.length > 0) {
 		
-		let target = (target)?' id="'+'"':'';
-		let elClass = (classInfo)?' id="'+'"':'';
+		let target = (targetEl)?' id="' + targetEl + '"':'';
+		let elClass = (classInfo)?' class="' + classInfo + '"':'';
 		
 		theMenu = theMenu + '<ul'+target+''+elClass+'>';
-
+		console.log(theMenu + ' ' + target);
 		obj.forEach(function (item) {
 
 			theMenu = theMenu + '<li><a href="#" data-pgid="' + item.object_id + '">' + item.title + '</a>';
