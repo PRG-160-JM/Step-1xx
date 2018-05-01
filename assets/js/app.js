@@ -1,4 +1,4 @@
-//inside out project STEP-105
+//inside out project STEP-106
 
 window.onload = init();
 
@@ -69,8 +69,6 @@ $.ajax({
 
 		}
 	});
-
-	getPosts();
 
 }
 
