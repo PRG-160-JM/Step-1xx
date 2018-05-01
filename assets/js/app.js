@@ -60,8 +60,6 @@ $.ajax({
 				getPage($(this).data("pgid"));
 			});
 			
-			getPage($(this).data("pgid"));
-
 		},
 		error: function () {
 
@@ -113,7 +111,7 @@ function getPage(obj) {
 	$.ajax({
 		method: 'GET',
 		url: 'https://me.iambeardednbroke.com/wp-json/wp/v2/pages/' + obj,
-		datatype: 'json',
+		dataType: 'json',
 		success: function (data) {
 			var pgbuild = '';
 			pgbuild = '<section><div class ="container">' + data.content.rendered + '</div></section>';
